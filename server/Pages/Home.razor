@@ -1,0 +1,50 @@
+﻿@page "/"
+@page "/home"
+@layout MainLayout
+@inherits PicturePuller.Pages.HomeComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using PicturePuller.Models.ConData
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Search For Picture">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenLabel Text="Enter Search Term For Image">
+        </RadzenLabel>
+        <RadzenTextBox @bind-Value="@searchTerm" Name="TxtSearchTerm">
+        </RadzenTextBox>
+        <RadzenLabel Text="Select Image Type">
+        </RadzenLabel>
+        <RadzenDropDown Data="@getImageTypesResult" TextProperty="ImageTypeName" @bind-Value="@imageType" ValueProperty="ImageTypeName" Name="DdlImageType">
+        </RadzenDropDown>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12" style="margin-left: 10px">
+        <RadzenButton style="margin-left: 250px" Text="Search Pixabay" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenButton style="margin-left: 10px" Text="Reset " Click="@Button1Click">
+        </RadzenButton>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenGrid @ref="grid0" Data="@getImageResult" TItem="PicturePuller.Models.Hit" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="PicturePuller.Models.Hit" Property="id" Title="Image ID" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="PicturePuller.Models.Hit" Property="previewURL" Title="Preview Image" Type="string">
+              <Template Context="picturePullerModelsHit">
+                <RadzenImage Path="@(picturePullerModelsHit.previewURL)">
+                </RadzenImage>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

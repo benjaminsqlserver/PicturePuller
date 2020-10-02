@@ -1,0 +1,205 @@
+{
+  "info": {
+    "title": "conData",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15
+  },
+  "definitions": {
+    "ImageType": {
+      "x-table": "dbo.ImageTypes",
+      "resource": "ImageTypes",
+      "required": [
+        "ImageTypeName"
+      ],
+      "properties": {
+        "ImageTypeID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "ImageTypeName": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        }
+      }
+    }
+  },
+  "paths": {
+    "/ImageTypes": {
+      "get": {
+        "operationId": "getImageTypes",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/ImageType"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createImageType",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ImageType",
+            "schema": {
+              "$ref": "#/definitions/ImageType"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/ImageType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/ImageTypes({ImageTypeID})": {
+      "delete": {
+        "operationId": "deleteImageType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ImageTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getImageTypeByImageTypeID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ImageTypeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ImageType"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateImageType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ImageTypeID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "ImageType",
+            "schema": {
+              "$ref": "#/definitions/ImageType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelImageTypeChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ImageType",
+            "schema": {
+              "$ref": "#/definitions/ImageType"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/conData",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

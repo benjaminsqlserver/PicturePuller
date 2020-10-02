@@ -1,0 +1,23 @@
+﻿@page "/image-details/{ID}"
+@layout MainLayout
+@inherits PicturePuller.Pages.ImageDetailsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using PicturePuller.Models.ConData
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Text="Return To Home Page" Click="@Button0Click">
+        </RadzenButton>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenImage Path="@(ID)" style="height: 489px; width: 801px">
+        </RadzenImage>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

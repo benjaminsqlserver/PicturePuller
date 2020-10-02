@@ -1,0 +1,197 @@
+{
+  "access": [],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Search For Picture",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "label0",
+                  "text": "Enter Search Term For Image",
+                  "type": "label"
+                },
+                {
+                  "name": "txtSearchTerm",
+                  "type": "textbox",
+                  "value": "${searchTerm}"
+                },
+                {
+                  "name": "label1",
+                  "text": "Select Image Type",
+                  "type": "label"
+                },
+                {
+                  "data": "${getImageTypesResult}",
+                  "name": "ddlImageType",
+                  "textProperty": "ImageTypeName",
+                  "type": "dropdown",
+                  "value": "${imageType}",
+                  "valueProperty": "ImageTypeName",
+                  "valueType": "string"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await FetchImages();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "button0",
+                  "style": {
+                    "marginLeft": "250px"
+                  },
+                  "text": "Search Pixabay",
+                  "type": "button"
+                },
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await Reset();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "button1",
+                  "style": {
+                    "marginLeft": "10px"
+                  },
+                  "text": "Reset ",
+                  "type": "button"
+                }
+              ],
+              "name": "col1",
+              "style": {
+                "marginLeft": "10px"
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "columns": [
+                    {
+                      "format": "",
+                      "property": "id",
+                      "title": "Image ID",
+                      "type": "integer"
+                    },
+                    {
+                      "format": "",
+                      "property": "previewURL",
+                      "template": [
+                        {
+                          "name": "image0",
+                          "path": "${data.previewURL}",
+                          "type": "image"
+                        }
+                      ],
+                      "title": "Preview Image",
+                      "type": "string"
+                    }
+                  ],
+                  "data": "${getImageResult}",
+                  "events": {
+                    "rowSelect": [
+                      {
+                        "height": 800,
+                        "parameters": [
+                          {
+                            "name": "ID",
+                            "value": "${event.largeImageURL}"
+                          }
+                        ],
+                        "path": "image-details",
+                        "title": "Image Details",
+                        "type": "popup",
+                        "width": 800
+                      }
+                    ]
+                  },
+                  "itemType": "PicturePuller.Models.Hit",
+                  "name": "grid0",
+                  "type": "grid"
+                }
+              ],
+              "name": "col2",
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "conData.getImageTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getImageTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<PicturePuller.Models.ConData.ImageType>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "searchTerm",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "imageType",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "global": false,
+        "name": "getImageResult",
+        "type": "set",
+        "value": "new List<PicturePuller.Models.Hit>(){}",
+        "valueType": "IEnumerable<PicturePuller.Models.Hit>"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Home"
+}

@@ -1,0 +1,61 @@
+{
+  "access": "Everybody",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "await ReturnToHomePage();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "button0",
+                  "text": "Return To Home Page",
+                  "type": "button"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "image0",
+                  "path": "${parameters.ID}",
+                  "style": {
+                    "height": "489px",
+                    "width": "801px"
+                  },
+                  "type": "image"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "ImageDetails"
+}

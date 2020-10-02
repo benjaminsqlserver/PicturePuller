@@ -1,0 +1,32 @@
+{
+  "dataSources": [
+    "conData"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": false,
+  "ignore": [
+    "\\server\\Models\\Root.cs",
+    "\\server\\appsettings.json",
+    ""
+  ],
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "PicturePuller",
+  "navigation": [
+    "Home"
+  ],
+  "pages": [
+    "Home",
+    "ImageDetails"
+  ],
+  "port": 8000,
+  "serverLang": "cs",
+  "serverPort": 5000,
+  "serverProject": true,
+  "serverVersion": "3",
+  "startPage": "Home",
+  "theme": "default"
+}
